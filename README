@@ -1,0 +1,16 @@
++-----------------------------------------------------------------------------+
+|          Semtech SX1243 firmware for STM8L152C6						  |
++-----------------------------------------------------------------------------+
+
+This firmware currently supports the following Semtech product:
+	- SX1243
+
+1. Introduction
+-------------------------------------------------------------------------------
+
+Port SX1243 driver onto STM8L-Discovery.  	
+
+2. Version history
+-------------------------------------------------------------------------------
+
+<1.0.0> - This is original project from STM8L_Discovery_SX1278_SFM1L project.
