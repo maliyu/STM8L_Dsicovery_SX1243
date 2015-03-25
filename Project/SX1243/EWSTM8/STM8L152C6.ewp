@@ -1760,7 +1760,7 @@
         <name>$PROJ_DIR$\..\inc\stm8l15x_it.h</name>
       </file>
       <file>
-        <name>$PROJ_DIR$\..\inc\sx1276.h</name>
+        <name>$PROJ_DIR$\..\inc\sx1243.h</name>
       </file>
       <file>
         <name>$PROJ_DIR$\..\inc\task.h</name>
@@ -1778,7 +1778,7 @@
         <name>$PROJ_DIR$\..\src\stm8l15x_it.c</name>
       </file>
       <file>
-        <name>$PROJ_DIR$\..\src\sx1276.c</name>
+        <name>$PROJ_DIR$\..\src\sx1243.c</name>
       </file>
       <file>
         <name>$PROJ_DIR$\..\src\task.c</name>

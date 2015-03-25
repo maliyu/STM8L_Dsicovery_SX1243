@@ -12,16 +12,6 @@
 #ifndef _TASK_H_
 #define _TASK_H_
 
-#define FIRMWARE_VERSION        "3.4.2"
-
-typedef struct sTaskInstance
-{
-  void *p_device1;
-  void *p_data;
-  void *p_dataLen;
-}tTaskInstance;
-
-tTaskInstance* task_init(void);
-void task_exec(tTaskInstance *task);
+#define FIRMWARE_VERSION        "1.0.0"
 
 #endif /* _TASK_H_ */

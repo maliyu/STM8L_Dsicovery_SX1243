@@ -21,13 +21,12 @@
 /* Includes ------------------------------------------------------------------*/
 #if defined(STM8L15X_MD)
 #include "stm8l15x.h"
-#include "board.h"
 //#include "stm8l15x_flash.h"
 #elif defined(STM8S003)
 #include "stm8s.h"
 #endif
 #include "task.h"
-#include "sx1276.h"
+#include "sx1243.h"
 #include "board.h"
 
 
@@ -36,8 +35,15 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
-static tRadioDriver *p_radio = 0;
-static tTaskInstance *p_task = 0;
+/* This Payload value is used only as an example */
+static uint8_t ExamplePayload[16] = { 0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07,
+                                 0x08, 0x09, 0x0A, 0x0B, 0x0C, 0x0D, 0x0E, 0x0F };
+
+/* This Sync value is used only as an example */
+static uint8_t ExampleSyncWord[4] = { 0x69, 0x81, 0x7E, 0x96 };
+
+/* This parameter allows us to access the sx1243 structure directly from the main */
+extern tTxParam TxParam;
 /* Private function prototypes -----------------------------------------------*/
 
 /* Private functions ---------------------------------------------------------*/
@@ -53,19 +59,21 @@ void main(void)
   
   Board_Init();
   
-  p_radio = RadioDriverInit( );  
-  p_radio->Init( );
-  p_radio->StartRx( );
-  
-  p_task = task_init();
-  p_task->p_device1 = p_radio;
+  SX1243Init( );
   
   enableInterrupts();
   
   /* Infinite loop */
   while (1)
   {
-    task_exec(p_task);
+  	// Send 1 packet at 9600 bps every time the button 1 is pressed using the default configuration
+	TxParam.Delay = 0;
+	TxParam.Repeat = 0;
+	TxParam.Bitrate = 9600;
+	SX1243SetTxSyncValue( ExampleSyncWord, (U8)sizeof( ExampleSyncWord ) );
+	SX1243SetTxPacketBuffer( ExamplePayload, (U8)sizeof( ExamplePayload ) );
+	SX1243Process( );
+	StandardWait(250);
   }
 }
 

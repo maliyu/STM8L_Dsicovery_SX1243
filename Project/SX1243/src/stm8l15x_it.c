@@ -330,6 +330,7 @@ INTERRUPT_HANDLER(TIM1_UPD_OVF_TRG_COM_IRQHandler, 23)
   /* In order to detect unexpected events during development,
      it is recommended to set a breakpoint on the following instruction.
   */
+  //TIM1_ClearITPendingBit(TIM1_IT_Update);
 }
 /**
   * @brief  TIM1 Capture/Compare Interrupt routine.
@@ -378,7 +379,6 @@ INTERRUPT_HANDLER(USART1_TX_IRQHandler, 27)
   */
 }
 
-extern void get_input(void);
 /**
   * @brief  USART1 RX Interrupt routine.
   * @param  None
@@ -389,7 +389,6 @@ INTERRUPT_HANDLER(USART1_RX_IRQHandler, 28)
   /* In order to detect unexpected events during development,
      it is recommended to set a breakpoint on the following instruction.
   */
-  get_input();
 }
 
 /**

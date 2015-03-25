@@ -8,9 +8,11 @@ This firmware currently supports the following Semtech product:
 1. Introduction
 -------------------------------------------------------------------------------
 
-Port SX1243 driver onto STM8L-Discovery.  	
+This is RF remote controller project for BHAGYASHREE INDUSTRIES (India). 
+This is transmitter part which we promote them Semtech SX1243.   	
 
 2. Version history
 -------------------------------------------------------------------------------
 
-<1.0.0> - This is original project from STM8L_Discovery_SX1278_SFM1L project.
+<master> - This is original project from STM8L_Discovery_SX1278_SFM1L project.
+<1.0.0> - Port Semtech SX1243 referece driver into STM8L_Discovery project.

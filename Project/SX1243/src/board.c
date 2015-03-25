@@ -19,6 +19,8 @@
 #include "stm8l15x_clk.h"
 #include "stm8l15x_gpio.h"
 #include "stm8l15x_usart.h"
+#include "stm8l15x_tim1.h"
+#include "stm8l15x_clk.h"
 #endif
 
 #define ISUNSIGNED(a) (a>0 && ~a>0)
@@ -169,3 +171,51 @@ void EEPROM_Read(uint16_t address, uint8_t *p_data, uint16_t len)
   }
 }
 #endif
+
+void delay_us(unsigned int a)
+{	
+	//24M 0.68uS
+	//16M 1.02us
+	while(a--);
+}
+
+void delay_ms(unsigned int ms) 
+{
+	//24MHZ 1ms
+	unsigned int ti;
+	
+	while(ms--)
+	{
+		for(ti=0;ti<1420;ti++){} //1421
+	}
+} 
+
+void Init_TIM1(void)
+{
+	CLK_PeripheralClockConfig (CLK_Peripheral_TIM1 , ENABLE);     
+    TIM1_DeInit();
+    TIM1_ITConfig(TIM1_IT_Update, ENABLE);
+}
+
+void Reset_TIM1(unsigned short value)
+{
+	TIM1_TimeBaseInit(1, TIM1_CounterMode_Down, value, 1);
+}
+
+void Wait_TIM1(void)
+{
+	while(TIM1_GetITStatus(TIM1_IT_Update) == RESET);
+
+	TIM1_ClearITPendingBit(TIM1_IT_Update);
+}
+
+void Enable_TIM1(void)
+{
+	TIM1_Cmd(ENABLE);
+}
+
+void Disable_TIM1(void)
+{
+	TIM1_Cmd(DISABLE);
+}
+

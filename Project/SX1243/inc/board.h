@@ -32,4 +32,11 @@ void LoRaRX_Indicate(void);
 void Uart_Prints(unsigned char *p_data, int length);
 //void EEPROM_Write(unsigned short address, unsigned char *p_data, unsigned short len);
 //void EEPROM_Read(unsigned short address, unsigned char *p_data, unsigned short len);
+void delay_us(unsigned int a);
+void delay_ms(unsigned int ms); 
+void Init_TIM1(void);
+void Reset_TIM1(unsigned short value);
+void Wait_TIM1(void);
+void Enable_TIM1(void);
+void Disable_TIM1(void);
 #endif /* _BOARD_H_ */
